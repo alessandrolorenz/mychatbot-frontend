@@ -43,6 +43,7 @@
 
             const chatBox = document.querySelector(".chatbot__box");
             chatBox.appendChild(questionLi);
+            questionLi.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             const paragraphTagWaiting = document.createElement("p");
             const answerWaiting = document.createElement("li");
@@ -99,6 +100,7 @@
 
                     answer.appendChild(paragraphTag)
                     chatBox.appendChild(answer);
+                    answer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     const chatbotChatWaiting = document.querySelector('.waiting');
                     chatbotChatWaiting.remove();
@@ -112,6 +114,7 @@
                     chatHistory.pop();
                     answer.appendChild(paragraphTag)
                     chatBox.appendChild(answer);
+                    answer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
 
 
@@ -126,6 +129,7 @@
                 answer.appendChild(paragraphTag)
                 chatBox.appendChild(answer);
                 chatHistory.pop();
+                answer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 console.error(error);
             }
         }
