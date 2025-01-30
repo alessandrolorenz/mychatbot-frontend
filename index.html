@@ -22,6 +22,8 @@
             );
         })
 
+        let chatHistory = [];
+
         async function sendMessage() {
             const userInput = document.getElementById("userInput");
             const userInputValue = userInput.value.trim();
@@ -53,10 +55,12 @@
 
             chatBox.appendChild(answerWaiting);
 
+            chatHistory.push({role: 'USER', message: userInputValue});
+
             const response = await fetch("https://alessandro-chatbot.vercel.app/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: userInputValue })
+                body: JSON.stringify({ history: chatHistory })
             });
 
             const data = await response.json();
@@ -71,6 +75,8 @@
             // });
 
             if (data.reply) {
+                
+                chatHistory.push({ role: "CHATBOT", message: data.reply });
                 const paragraphs = data.reply.split('\n');
                 userInput.innerHTML = "";
                 userInput.value = "";
